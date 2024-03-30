@@ -13,7 +13,7 @@ function Header() {
     <header className="header">
       <div className="container header__container">
         <Burger />
-        <a href="#">
+        <a className="header__logo-link" href="#">
           <img src={logo} alt="" className="header__logo" />
         </a>
         <Navigation />

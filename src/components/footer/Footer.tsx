@@ -9,7 +9,7 @@ function Footer() {
     <footer className="footer">
       <div className="container footer__container">
         <a href="#" className="footer__link">
-          <img src={logo} alt="" className="footer__log" />
+          <img src={logo} alt="" className="footer__logo" />
         </a>
         <a className="footer__github" href="#">
           <img width="30" src={github} alt="" />

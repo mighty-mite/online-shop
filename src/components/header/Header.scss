@@ -2,7 +2,6 @@
   display: flex;
   column-gap: 24px;
   align-items: center;
-  row-gap: 40px;
   color: black;
   padding: 24px 0 24px 0;
 }
@@ -21,4 +20,25 @@
   padding: 0;
   border: none;
   cursor: pointer;
+}
+
+.header__logo-link {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 694px) {
+  .header__logo-link {
+    margin-right: auto;
+  }
+
+  .header__logo {
+    width: 126px;
+  }
+}
+
+@media (max-width: 420px) {
+  .header__container {
+    // column-gap: 0;
+  }
 }
