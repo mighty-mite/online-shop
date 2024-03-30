@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 import './App.scss';
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/cart" />
         <Route path="*" />
       </Routes>
+      <Footer />
     </div>
   );
 }

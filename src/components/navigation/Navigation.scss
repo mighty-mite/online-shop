@@ -13,3 +13,9 @@
 .navigation__item:not(:last-child) {
   margin-right: 24px;
 }
+
+@media (max-width: 694px) {
+  .navigation {
+    display: none;
+  }
+}

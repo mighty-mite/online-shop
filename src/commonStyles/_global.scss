@@ -1,4 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
 .container {
   width: 86%;
   margin: 0 auto;
+}
+
+@media (max-width: 694px) {
+  .container {
+    width: 91%;
+  }
 }
