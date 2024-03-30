@@ -1,0 +1,24 @@
+.header__container {
+  display: flex;
+  column-gap: 24px;
+  align-items: center;
+  row-gap: 40px;
+  color: black;
+  padding: 24px 0 24px 0;
+}
+
+.header__buttons {
+  display: flex;
+
+  align-items: center;
+}
+
+.header__login,
+.header__cart {
+  background: none;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
