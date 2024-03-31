@@ -1,0 +1,9 @@
+.shop__container {
+  display: flex;
+}
+
+.shop__cardfield {
+  display: grid;
+  grid-template-columns: 25% 25% 25%;
+  gap: 30px;
+}

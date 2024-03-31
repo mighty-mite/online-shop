@@ -1,2 +1,12 @@
 @import './commonStyles/normalize';
 @import './commonStyles/global';
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+}
