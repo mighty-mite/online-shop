@@ -1,22 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Card from '../../components/card/Card';
 import Filters from '../../components/filters.tsx/Filters';
-
-import useResize from '../../hooks/useResize';
 
 import './ShopPage.scss';
 
 function ShopPage() {
-  const { width, isMobile } = useResize();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
     setIsModalOpen(!isModalOpen);
   };
-
-  // useEffect(() => {
-  //   console.log(isMobile);
-  // }, [width, isMobile]);
 
   return (
     <section className="shop">

@@ -1,10 +1,11 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import logo from '../../assets/logo.png';
-import cart from '../../assets/cart.svg';
-import login from '../../assets/login.svg';
+import { Link } from 'react-router-dom';
 import Burger from '../burger/Burger';
 import SearchBar from '../searchBar/SearchBar';
 import Navigation from '../navigation/Navigation';
+
+import logo from '../../assets/logo.png';
+import cart from '../../assets/cart.svg';
+import login from '../../assets/login.svg';
 
 import './Header.scss';
 
@@ -13,15 +14,15 @@ function Header() {
     <header className="header">
       <div className="container header__container">
         <Burger />
-        <a className="header__logo-link" href="#">
+        <Link className="header__logo-link" to="/">
           <img src={logo} alt="" className="header__logo" />
-        </a>
+        </Link>
         <Navigation />
         <SearchBar />
         <div className="header__buttons">
-          <a className="header__cart" href="#">
+          <Link className="header__cart" to="/cart">
             <img src={cart} alt="" />
-          </a>
+          </Link>
           <button aria-label="log-in" type="button" className="header__login">
             <img src={login} alt="" />
           </button>

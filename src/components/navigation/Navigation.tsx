@@ -1,18 +1,19 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+import { Link } from 'react-router-dom';
+
 import './Navigation.scss';
 
 function Navigation() {
   return (
     <ul className="navigation">
       <li className="navigation__item">
-        <a className="navigation__link" href="#">
+        <Link className="navigation__link" to="/">
           Home
-        </a>
+        </Link>
       </li>
       <li className="navigation__item">
-        <a className="navigation__link" href="#">
+        <Link className="navigation__link" to="/shop">
           Shop
-        </a>
+        </Link>
       </li>
     </ul>
   );

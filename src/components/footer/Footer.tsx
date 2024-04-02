@@ -1,4 +1,5 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+import { Link } from 'react-router-dom';
+
 import logo from '../../assets/logo.png';
 import github from '../../assets/github.svg';
 
@@ -8,10 +9,15 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="container footer__container">
-        <a href="#" className="footer__link">
-          <img src={logo} alt="" className="footer__logo" />
-        </a>
-        <a className="footer__github" href="#">
+        <Link to="/" className="footer__link">
+          <img src={logo} alt="logo" className="footer__logo" />
+        </Link>
+        <a
+          className="footer__github"
+          target="_blank"
+          href="https://github.com/mighty-mite"
+          rel="noreferrer"
+        >
           <img width="30" src={github} alt="" />
         </a>
         <ul className="footer__payment">
