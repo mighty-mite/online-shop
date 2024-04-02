@@ -1,7 +1,5 @@
 .category {
   background: white;
-  border: 1px solid #e8e8e8;
-  border-radius: 5px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -9,16 +7,16 @@
 
 .category__heading {
   font-weight: 700;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 24px;
   color: #252b42;
   margin-bottom: 20px;
-  padding: 25px 0 0 0;
 }
 
 .category__list {
-  padding: 0 30px 20px 30px;
+  padding: 0 30px 0 30px;
   overflow-y: auto;
+  margin: 0;
 }
 
 .category__list::-webkit-scrollbar {
@@ -49,9 +47,10 @@
 }
 
 .category__label {
-  padding-left: 40px;
+  padding-left: 15px;
   cursor: pointer;
   margin-bottom: 14px;
+  font-size: 16px;
 
   &:hover {
     color: #2091f9;
@@ -68,7 +67,7 @@
     height: 25px;
     border: 2px solid #dcdcdc;
     border-radius: 5px;
-    left: 0;
+    left: -29px;
   }
 }
 
@@ -80,10 +79,10 @@
     position: absolute;
     width: 25px;
     height: 25px;
-    border: none;
+    border: 2px solid #2091f9;
     border-radius: 5px;
     background-color: #2091f9;
-    left: 0;
+    left: -29px;
   }
 
   &::after {
@@ -95,7 +94,7 @@
     border-left: 4px solid white;
     border-bottom: 4px solid white;
     transform: rotate(-45deg);
-    top: 7px;
-    left: 5px;
+    top: 8px;
+    left: -23px;
   }
 }

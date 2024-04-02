@@ -1,11 +1,33 @@
 .filters {
-  border: 1px solid #f0f0f0;
-  border-radius: 20px;
+  border: 1px solid rgb(195, 195, 195);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   width: 295px;
   padding: 0px 24px 20px 24px;
   margin-top: 20px;
   position: sticky;
   top: 119px;
+
+  background-image: url('./../../assets/filters.svg');
+  background-repeat: no-repeat;
+  background-position: 89% 7%;
+}
+
+.filters__top {
+  border-bottom: 1px solid #f0f0f0;
+  padding-top: 20px;
+  padding-bottom: 24px;
+}
+
+.filters__heading {
+  font-size: 20px;
+  margin: 0;
+}
+
+.filters__close-btn {
+  display: none;
 }
 
 .filters__category {
@@ -16,4 +38,78 @@
 
 .filters__item:not(:last-child) {
   margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.filters__apply {
+  height: 47px;
+  width: 100%;
+  background-color: black;
+  border: none;
+  border-radius: 62px;
+  color: white;
+}
+
+@media (max-width: 1120px) {
+  .filters {
+    width: 250px;
+  }
+}
+
+@media (max-width: 800px) {
+  .filters {
+    position: absolute;
+    left: -800px;
+    bottom: 0;
+    top: 52px;
+    z-index: 5;
+    background-color: white;
+    width: 100vw;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+    background-image: none;
+
+    transition: all 0.2s ease-in-out;
+  }
+
+  .filters.active {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 52px;
+    z-index: 5;
+    background-color: white;
+    width: 100vw;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+    background-image: none;
+  }
+
+  .filters__top {
+    display: flex;
+  }
+
+  .filters__heading {
+    margin-right: auto;
+  }
+
+  .filters__close-btn {
+    display: block;
+    background-color: white;
+    width: 24px;
+    height: 24px;
+    border: none;
+    align-self: center;
+  }
+
+  body {
+    height: 100vh;
+    overflow-y: hidden;
+  }
 }

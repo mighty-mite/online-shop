@@ -1,9 +1,60 @@
 .shop__container {
   display: flex;
+  gap: 20px;
 }
 
 .shop__cardfield {
   display: grid;
-  grid-template-columns: 25% 25% 25%;
-  gap: 30px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.shop__filters-mobile-button {
+  display: none;
+  width: 32px;
+  height: 32px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  border: none;
+}
+
+.shop__overlay.active {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  background-color: rgba(40, 185, 233, 0.5);
+}
+
+@media (max-width: 1600px) {
+  .shop__cardfield {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1000px) {
+  .shop__cardfield {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+}
+
+@media (max-width: 800px) {
+  .shop__filters-mobile-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    align-self: flex-end;
+  }
+  .shop__container {
+    flex-direction: column;
+  }
 }
