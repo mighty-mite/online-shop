@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchGoods } from './goodsSlice';
 import Card from '../../components/card/Card';
 import Filters from '../../components/filters.tsx/Filters';
 
 import './ShopPage.scss';
+import { AppDispatch } from '../../store';
 
 function ShopPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,6 +13,12 @@ function ShopPage() {
   const showModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(fetchGoods());
+  }, [dispatch]);
 
   return (
     <section className="shop">
