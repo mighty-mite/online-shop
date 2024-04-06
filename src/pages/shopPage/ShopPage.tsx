@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchGoods } from './goodsSlice';
-import Card from '../../components/card/Card';
+import { AppDispatch } from '../../store';
+import CardField from '../../components/cardField/CardField';
 import Filters from '../../components/filters.tsx/Filters';
 
 import './ShopPage.scss';
-import { AppDispatch } from '../../store';
 
 function ShopPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,25 +33,7 @@ function ShopPage() {
         >
           <img src="./src/assets/filters.svg" alt="" />
         </button>
-        <div className="shop__cardfield">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div>
+        <CardField />
       </div>
       <div className={`shop__overlay ${isModalOpen ? 'active' : ''}`} />
     </section>

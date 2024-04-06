@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-catch */
 const useHttp = () => {
   const getAll = async (
-    url = 'https://api.escuelajs.co/api/v1/products',
+    url = 'https://dummyjson.com/products',
     method = 'GET',
     body = null,
     headers = { 'Content-Type': 'application/json' }
@@ -15,7 +15,7 @@ const useHttp = () => {
 
       const data = await response.json();
 
-      return data;
+      return data.products;
     } catch (e) {
       throw e;
     }

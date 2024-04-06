@@ -1,11 +1,23 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
+// import img from '../../assets/cardpicture.png';
 import './Card.scss';
 
-import img from '../../assets/cardpicture.png';
+interface Props {
+  id: number;
+  title: string;
+  price: number;
+  // category: {
+  //   id: number;
+  //   name: string;
+  //   image: string;
+  // };
+  images: string[];
+}
 
-function Card() {
+function Card(props: Props) {
+  const { id, title, price, images } = props;
   const [isAdded, setIsAdded] = useState(false);
   const [amount, setAmount] = useState(1);
 
@@ -28,12 +40,12 @@ function Card() {
   return (
     <div className="card">
       <Link className="card__link" to="/shop">
-        <img src={img} alt="title" className="card__img" />
+        <img src={images[0]} alt="title" className="card__img" />
         <div className="card__text">
-          <h2 className="card__heading">name</h2>
+          <h2 className="card__heading">{title}</h2>
           <p className="card__price">
             <span className="card__currency">$</span>
-            <span className="card__price-data">666</span>
+            <span className="card__price-data">{price}</span>
           </p>
         </div>
       </Link>
