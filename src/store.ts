@@ -2,10 +2,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 
-import goods, { goodsAdapter } from './pages/shopPage/goodsSlice';
+import cards, { cardsAdapter } from './components/cardField/cardsSlice';
 
 export const store = configureStore({
-  reducer: { goods },
+  reducer: { cards },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
   devTools: process.env.NODE_ENV !== 'production',
 });
@@ -17,6 +17,6 @@ export type AppDispatch = typeof store.dispatch;
 
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-export const { selectAll } = goodsAdapter.getSelectors<RootState>(
-  (state) => state.goods
+export const { selectAll } = cardsAdapter.getSelectors<RootState>(
+  (state) => state.cards
 );

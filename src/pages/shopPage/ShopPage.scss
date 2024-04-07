@@ -24,6 +24,32 @@
   background-color: rgba(40, 185, 233, 0.5);
 }
 
+.shop__cardfield-wrapper {
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.shop__cardfield-load-btn {
+  height: 47px;
+  width: 30%;
+  background-color: black;
+  border: none;
+  border-radius: 62px;
+  color: white;
+  display: block;
+  margin: 0 auto;
+
+  &:hover {
+    background-color: rgb(49, 48, 48);
+  }
+}
+
+.shop__cardfield-load-btn.inactive {
+  .inactive {
+    background-color: red;
+  }
+}
+
 @media (max-width: 800px) {
   .shop__filters-mobile-button {
     display: flex;
