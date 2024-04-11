@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 
 import cards, { cardsAdapter } from './components/cardField/cardsSlice';
+import categories from './components/category/categorySlice';
 
 export const store = configureStore({
-  reducer: { cards },
+  reducer: { cards, categories },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
   devTools: process.env.NODE_ENV !== 'production',
 });
