@@ -12,7 +12,7 @@
 
   background-image: url('./../../assets/filters.svg');
   background-repeat: no-repeat;
-  background-position: 89% 7%;
+  background-position: 89% 4%;
 }
 
 .filters__top {
@@ -37,8 +37,8 @@
 }
 
 .filters__item:not(:last-child) {
-  margin-bottom: 20px;
-  margin-top: 20px;
+  // margin-bottom: 20px;
+  // margin-top: 20px;
 }
 
 .filters__apply {

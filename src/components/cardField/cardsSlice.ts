@@ -13,13 +13,10 @@ const initialState = cardsAdapter.getInitialState({
   offset: 10,
 });
 
-export const fetchCards = createAsyncThunk(
-  'cards/fetchCards',
-  (query: string) => {
-    const { getAll } = useHttp(query);
-    return getAll();
-  }
-);
+export const fetchCards = createAsyncThunk('cards/fetchCards', () => {
+  const { getAll } = useHttp();
+  return getAll();
+});
 
 const cardsSlice = createSlice({
   name: 'cards',
@@ -36,7 +33,7 @@ const cardsSlice = createSlice({
       })
       .addCase(fetchCards.fulfilled, (state, action) => {
         state.cardsLoadingStatus = 'idle';
-        cardsAdapter.addMany(state, action.payload);
+        cardsAdapter.addMany(state, action.payload.data);
       })
       .addCase(fetchCards.rejected, (state) => {
         state.cardsLoadingStatus = 'error';

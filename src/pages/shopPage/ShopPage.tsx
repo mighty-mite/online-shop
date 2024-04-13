@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOffset } from '../../components/cardField/cardsSlice';
 import CardField from '../../components/cardField/CardField';
-import Filters from '../../components/filters.tsx/Filters';
+import Filters from '../../components/filters/Filters';
 
 import './ShopPage.scss';
 import { AppDispatch, RootState } from '../../store';

@@ -1,3 +1,4 @@
+import Brand from '../brand/Brand';
 import Category from '../category/Category';
 import PriceRangeSlider from '../priceRangeSlider/PriceRangeSlider';
 import './Filters.scss';
@@ -22,10 +23,11 @@ function Filters(props: Props) {
         </button>
       </div>
       <Category />
+      <Brand />
       <PriceRangeSlider />
-      <button className="filters__apply" type="button">
+      {/* <button className="filters__apply" type="button">
         Apply
-      </button>
+      </button> */}
     </div>
   );
 }

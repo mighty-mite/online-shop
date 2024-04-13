@@ -13,9 +13,9 @@ const initialState: InitialState = {
 
 export const fetchCategories = createAsyncThunk(
   'categoriesS/fetchCategories',
-  (query: string) => {
-    const { getCategories } = useHttp(query);
-    return getCategories();
+  async () => {
+    const { getAll } = useHttp();
+    return (await getAll()).categories;
   }
 );
 

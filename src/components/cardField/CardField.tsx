@@ -22,7 +22,8 @@ function CardField() {
 
   useEffect(() => {
     dispatch(
-      fetchCards(`https://dummyjson.com/products?limit=${offset}&skip=${0}`)
+      fetchCards()
+      // fetchCards(`https://dummyjson.com/products?limit=${offset}&skip=${0}`)
     );
   }, [dispatch, offset]);
 

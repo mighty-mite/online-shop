@@ -4,9 +4,11 @@ import type { TypedUseSelectorHook } from 'react-redux';
 
 import cards, { cardsAdapter } from './components/cardField/cardsSlice';
 import categories from './components/category/categorySlice';
+import brands from './components/brand/brandSlice';
+import filters from './components/filters/filterSettingsSlice';
 
 export const store = configureStore({
-  reducer: { cards, categories },
+  reducer: { cards, categories, brands, filters },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
   devTools: process.env.NODE_ENV !== 'production',
 });

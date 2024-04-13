@@ -1,12 +1,13 @@
 export interface ICard {
   id: number;
   title: string;
-  price: number;
   description: string;
-  category: {
-    id: number;
-    name: string;
-    image: string;
-  };
+  price: number;
+  discountPercantage: number;
+  rating: 4.69;
+  stock: 94;
+  brand: 'Apple';
+  category: 'smartphones';
+  thumbnail: '...';
   images: string[];
 }
