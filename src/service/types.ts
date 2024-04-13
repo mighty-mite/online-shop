@@ -11,3 +11,11 @@ export interface ICard {
   thumbnail: '...';
   images: string[];
 }
+
+export interface FilterSettings {
+  category: string[];
+  brand: string[];
+  minPrice: number;
+  maxPrice: number;
+  search: string;
+}

@@ -7,6 +7,7 @@ interface InitialState {
   brand: string[];
   minPrice: number;
   maxPrice: number;
+  search: string;
 }
 
 const initialState: InitialState = {
@@ -14,6 +15,7 @@ const initialState: InitialState = {
   brand: [],
   minPrice: 10,
   maxPrice: 2000,
+  search: '',
 };
 
 export const fetchFilterSettings = createAsyncThunk(
@@ -47,6 +49,9 @@ const filterSlice = createSlice({
     maxPriceChange: (state, action) => {
       state.maxPrice = action.payload;
     },
+    setSearch: (state, action) => {
+      state.search = action.payload;
+    },
   },
   // extraReducers: (builder) => {
   //   builder.addCase(fetchFilterSettings.fulfilled, (state, action) => {
@@ -68,6 +73,8 @@ export const {
 
   maxPriceChange,
   minPriceChange,
+
+  setSearch,
 } = actions;
 
 export default reducer;
