@@ -39,7 +39,7 @@ const useHttp = () => {
       );
       return {
         data: data.products,
-        minMaxPrice: {
+        prices: {
           from: minPrice,
           to: maxPrice,
         },
@@ -50,26 +50,8 @@ const useHttp = () => {
       throw e;
     }
   };
-
-  // const getCategories = async (
-  //   method = 'GET',
-  //   body = null,
-  //   headers = { 'Content-Type': 'application/json' }
-  // ) => {
-  //   try {
-  //     const response = await fetch(query, { method, body, headers });
-  //     if (!response.ok) {
-  //       throw new Error(`Could not fetch ${query}, status: ${response.status}`);
-  //     }
-  //     const data = await response.json();
-  //     return data;
-  //   } catch (e) {
-  //     throw e;
-  //   }
-  // };
   return {
     getAll,
-    // getCategories,
   };
 };
 

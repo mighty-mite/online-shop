@@ -5,19 +5,15 @@ import useHttp from '../../hooks/useHttp';
 interface InitialState {
   category: string[];
   brand: string[];
-  minMaxPrice: {
-    from: number;
-    to: number;
-  };
+  minPrice: number;
+  maxPrice: number;
 }
 
 const initialState: InitialState = {
   category: [],
   brand: [],
-  minMaxPrice: {
-    from: 0,
-    to: 1000,
-  },
+  minPrice: 10,
+  maxPrice: 2000,
 };
 
 export const fetchFilterSettings = createAsyncThunk(
@@ -44,20 +40,34 @@ const filterSlice = createSlice({
     brandRemoved: (state, action) => {
       state.brand = state.brand.filter((item) => item !== action.payload);
     },
+
+    minPriceChange: (state, action) => {
+      state.minPrice = action.payload;
+    },
+    maxPriceChange: (state, action) => {
+      state.maxPrice = action.payload;
+    },
   },
   // extraReducers: (builder) => {
   //   builder.addCase(fetchFilterSettings.fulfilled, (state, action) => {
-  //     state.category = action.payload.categories;
-  //     state.brand = action.payload.brands;
-  //     state.minMaxPrice.from = action.payload.minMaxPrice.from;
-  //     state.minMaxPrice.to = action.payload.minMaxPrice.to;
+  // state.category = action.payload.categories;
+  // state.brand = action.payload.brands;
+  // state.prices.from = action.payload.prices.from;
+  // state.prices.to = action.payload.prices.to;
   //   });
   // },
 });
 
 const { actions, reducer } = filterSlice;
 
-export const { categoryAdded, categoryRemoved, brandAdded, brandRemoved } =
-  actions;
+export const {
+  categoryAdded,
+  categoryRemoved,
+  brandAdded,
+  brandRemoved,
+
+  maxPriceChange,
+  minPriceChange,
+} = actions;
 
 export default reducer;
