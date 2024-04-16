@@ -48,7 +48,7 @@ function CardField() {
         key={card.id}
         id={card.id}
         price={card.price}
-        images={card.images}
+        thumbnail={card.thumbnail}
         title={card.title}
       />
     ));

@@ -4,11 +4,11 @@ export interface ICard {
   description: string;
   price: number;
   discountPercantage: number;
-  rating: 4.69;
-  stock: 94;
-  brand: 'Apple';
-  category: 'smartphones';
-  thumbnail: '...';
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
   images: string[];
 }
 

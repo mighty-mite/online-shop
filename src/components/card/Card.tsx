@@ -13,11 +13,11 @@ interface Props {
   //   name: string;
   //   image: string;
   // };
-  images: string[];
+  thumbnail: string;
 }
 
 function Card(props: Props) {
-  const { id, title, price, images } = props;
+  const { id, title, price, thumbnail } = props;
   const [isAdded, setIsAdded] = useState(false);
   const [amount, setAmount] = useState(1);
 
@@ -39,8 +39,8 @@ function Card(props: Props) {
 
   return (
     <div className="card">
-      <Link className="card__link" to="/shop">
-        <img src={images[0]} alt="title" className="card__img" />
+      <Link className="card__link" to={`/shop/${id}`}>
+        <img src={thumbnail} alt="title" className="card__img" />
         <div className="card__text">
           <h2 className="card__heading">{title}</h2>
           <p className="card__price">
