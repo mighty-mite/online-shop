@@ -11,6 +11,7 @@ export const cardsAdapter = createEntityAdapter();
 const initialState = cardsAdapter.getInitialState({
   cardsLoadingStatus: 'idle',
   offset: 10,
+  filteredCards: [],
 });
 
 export const fetchCards = createAsyncThunk('cards/fetchCards', () => {
@@ -24,6 +25,9 @@ const cardsSlice = createSlice({
   reducers: {
     setOffset: (state) => {
       state.offset += 10;
+    },
+    setFilteredCards: (state, action) => {
+      state.filteredCards = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -44,6 +48,6 @@ const cardsSlice = createSlice({
 
 const { actions, reducer } = cardsSlice;
 
-export const { setOffset } = actions;
+export const { setOffset, setFilteredCards } = actions;
 
 export default reducer;

@@ -1,0 +1,11 @@
+.summary {
+  border: 1px solid #9a9a9a;
+  border-radius: 20px;
+}
+
+.summary__subtotal,
+.summary__delivery,
+.summary__total {
+  display: flex;
+  justify-content: space-between;
+}

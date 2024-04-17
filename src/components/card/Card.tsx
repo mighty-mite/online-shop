@@ -1,18 +1,15 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem, cartAdapter } from '../../pages/cartPage/cartSlice';
+import { AppDispatch, RootState, selectById } from '../../store';
 
-// import img from '../../assets/cardpicture.png';
 import './Card.scss';
 
 interface Props {
   id: number;
   title: string;
   price: number;
-  // category: {
-  //   id: number;
-  //   name: string;
-  //   image: string;
-  // };
   thumbnail: string;
 }
 
@@ -20,9 +17,13 @@ function Card(props: Props) {
   const { id, title, price, thumbnail } = props;
   const [isAdded, setIsAdded] = useState(false);
   const [amount, setAmount] = useState(1);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const thisCard = useSelector((state: RootState) => selectById(state, id));
 
   const onClick = () => {
     setIsAdded(!isAdded);
+    dispatch(addItem(thisCard));
   };
 
   const decrement = () => {

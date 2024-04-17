@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCards } from './cardsSlice';
+import { fetchCards, setFilteredCards } from './cardsSlice';
 import { AppDispatch, RootState, selectAll } from '../../store';
 import { ICard } from '../../service/types';
 import Card from '../card/Card';
@@ -9,6 +9,7 @@ import filterCards from '../../service/filter';
 import './CardField.scss';
 
 function CardField() {
+  const dispatch = useDispatch<AppDispatch>();
   // Селектор
   const loadingStatus = useSelector(
     (state: RootState) => state.cards.cardsLoadingStatus
@@ -20,11 +21,11 @@ function CardField() {
 
   const filteredCards = filterCards(goods as ICard[], filterSettings);
 
+  // dispatch(setFilteredCards(filteredCards));
+
   const offset = useSelector((state: RootState) => state.cards.offset);
 
   // Первая загрузка
-
-  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(fetchCards());

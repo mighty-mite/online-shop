@@ -6,9 +6,10 @@ import cards, { cardsAdapter } from './components/cardField/cardsSlice';
 import categories from './components/category/categorySlice';
 import brands from './components/brand/brandSlice';
 import filters from './components/filters/filterSettingsSlice';
+import cart, { cartAdapter } from './pages/cartPage/cartSlice';
 
 export const store = configureStore({
-  reducer: { cards, categories, brands, filters },
+  reducer: { cards, categories, brands, filters, cart },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
   devTools: process.env.NODE_ENV !== 'production',
 });
@@ -21,5 +22,9 @@ export type AppDispatch = typeof store.dispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const { selectAll } = cardsAdapter.getSelectors<RootState>(
+  (state) => state.cards
+);
+
+export const { selectById } = cartAdapter.getSelectors<RootState>(
   (state) => state.cards
 );
