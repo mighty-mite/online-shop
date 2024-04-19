@@ -2,11 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 
-import cards, { cardsAdapter } from './components/cardField/cardsSlice';
+import cards from './components/cardField/cardsSlice';
 import categories from './components/category/categorySlice';
 import brands from './components/brand/brandSlice';
 import filters from './components/filters/filterSettingsSlice';
-import cart, { cartAdapter } from './pages/cartPage/cartSlice';
+import cart from './pages/cartPage/cartSlice';
 
 export const store = configureStore({
   reducer: { cards, categories, brands, filters, cart },
@@ -21,10 +21,6 @@ export type AppDispatch = typeof store.dispatch;
 
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-export const { selectAll } = cardsAdapter.getSelectors<RootState>(
-  (state) => state.cards
-);
-
-export const { selectById } = cartAdapter.getSelectors<RootState>(
-  (state) => state.cards
-);
+// export const { selectById } = cartAdapter.getSelectors<RootState>(
+//   (state) => state.cards
+// );

@@ -4,6 +4,7 @@ import {
   createAsyncThunk,
   createEntityAdapter,
 } from '@reduxjs/toolkit';
+import type { RootState } from '../../store';
 import useHttp from '../../hooks/useHttp';
 
 export const cardsAdapter = createEntityAdapter();
@@ -45,6 +46,10 @@ const cardsSlice = createSlice({
       .addDefaultCase(() => {});
   },
 });
+
+export const { selectAll, selectById } = cardsAdapter.getSelectors<RootState>(
+  (state) => state.cards
+);
 
 const { actions, reducer } = cardsSlice;
 

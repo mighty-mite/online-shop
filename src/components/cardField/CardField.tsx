@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCards, setFilteredCards } from './cardsSlice';
-import { AppDispatch, RootState, selectAll } from '../../store';
+import { fetchCards, selectAll } from './cardsSlice';
+import { AppDispatch, RootState } from '../../store';
 import { ICard } from '../../service/types';
 import Card from '../card/Card';
 import filterCards from '../../service/filter';

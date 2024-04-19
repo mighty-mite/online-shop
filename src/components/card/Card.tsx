@@ -1,9 +1,16 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, cartAdapter } from '../../pages/cartPage/cartSlice';
-import { AppDispatch, RootState, selectById } from '../../store';
+import { selectById } from '../cardField/cardsSlice';
+import {
+  selectAll,
+  addItem,
+  changeQty,
+  removeItem,
+} from '../../pages/cartPage/cartSlice';
+import { AppDispatch, RootState } from '../../store';
 
+import { ICard } from '../../service/types';
 import './Card.scss';
 
 interface Props {
@@ -15,27 +22,52 @@ interface Props {
 
 function Card(props: Props) {
   const { id, title, price, thumbnail } = props;
+
+  const thisCard = useSelector((state: RootState) => selectById(state, id));
+
   const [isAdded, setIsAdded] = useState(false);
   const [amount, setAmount] = useState(1);
   const dispatch = useDispatch<AppDispatch>();
 
-  const thisCard = useSelector((state: RootState) => selectById(state, id));
-
   const onClick = () => {
+    // !
     setIsAdded(!isAdded);
-    dispatch(addItem(thisCard));
+    setAmount(() => {
+      const newValue = 1;
+      dispatch(
+        addItem({
+          id: thisCard.id,
+          thisCard,
+          quantity: newValue,
+          isAdded: true,
+        })
+      );
+
+      return newValue;
+    });
   };
 
   const decrement = () => {
     if (amount <= 1) {
+      // !
       setIsAdded(!isAdded);
-      return;
     }
-    setAmount((value) => value - 1);
+    setAmount((value) => {
+      const newValue = value - 1;
+      dispatch(changeQty({ id: thisCard.id, thisCard, quantity: newValue }));
+      if (newValue === 0) {
+        dispatch(removeItem(id));
+      }
+      return newValue;
+    });
   };
 
   const increment = () => {
-    setAmount((value) => value + 1);
+    setAmount((value) => {
+      const newValue = value + 1;
+      dispatch(changeQty({ id: thisCard.id, thisCard, quantity: newValue }));
+      return newValue;
+    });
   };
 
   return (
@@ -52,6 +84,7 @@ function Card(props: Props) {
       </Link>
       <div className="card__add-container">
         <button
+          // !
           className={`card__add ${isAdded ? '' : 'active'}`}
           type="button"
           onClick={onClick}
@@ -60,6 +93,7 @@ function Card(props: Props) {
         </button>
 
         <div
+          // !
           className={`card__change-qnt-container ${isAdded ? 'active' : ''}`}
         >
           <button
