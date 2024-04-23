@@ -30,7 +30,7 @@ function Brand() {
         <label htmlFor={item} className="brand__label">
           <input
             checked={filterSettings.includes(item)}
-            onClick={(e) => {
+            onChange={(e) => {
               const target = e.target as HTMLInputElement;
               onBrandHandler(item, target.checked);
             }}
