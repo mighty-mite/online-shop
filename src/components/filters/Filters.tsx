@@ -25,9 +25,6 @@ function Filters(props: Props) {
       <Category />
       <Brand />
       <PriceRangeSlider />
-      {/* <button className="filters__apply" type="button">
-        Apply
-      </button> */}
     </div>
   );
 }

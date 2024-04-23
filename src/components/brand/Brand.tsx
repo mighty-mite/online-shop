@@ -10,6 +10,7 @@ function Brand() {
   const dispatch = useDispatch<AppDispatch>();
 
   const brands = useSelector((state: RootState) => state.brands.brand);
+  const filterSettings = useSelector((state: RootState) => state.filters.brand);
 
   useEffect(() => {
     dispatch(fetchBrands());
@@ -28,6 +29,7 @@ function Brand() {
       <li key={i} className="brand__wrapper">
         <label htmlFor={item} className="brand__label">
           <input
+            checked={filterSettings.includes(item)}
             onClick={(e) => {
               const target = e.target as HTMLInputElement;
               onBrandHandler(item, target.checked);

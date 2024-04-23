@@ -9,7 +9,12 @@ import './Category.scss';
 function Category() {
   const dispatch = useDispatch<AppDispatch>();
 
-  const categories = useSelector((state: RootState) => state.categories);
+  const categories = useSelector(
+    (state: RootState) => state.categories.category
+  );
+  const filterSettings = useSelector(
+    (state: RootState) => state.filters.category
+  );
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -28,6 +33,7 @@ function Category() {
       <li key={i} className="category__wrapper">
         <label htmlFor={item} className="category__label">
           <input
+            checked={filterSettings.includes(item)}
             onClick={(e) => {
               const target = e.target as HTMLInputElement;
               onCategoryHandler(item, target.checked);
@@ -42,7 +48,7 @@ function Category() {
     ));
   };
 
-  const content = renderCategories(categories.category);
+  const content = renderCategories(categories);
 
   return (
     <div className="category filters__item">
