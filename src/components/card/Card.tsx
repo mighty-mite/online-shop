@@ -3,10 +3,11 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectById } from '../cardField/cardsSlice';
 import {
-  selectAll,
   addItem,
   changeQty,
   removeItem,
+  selectIsAddedById,
+  selectQtyById,
 } from '../../pages/cartPage/cartSlice';
 import { AppDispatch, RootState } from '../../store';
 
@@ -20,54 +21,51 @@ interface Props {
   thumbnail: string;
 }
 
+export interface CartItem {
+  id: number;
+  isAdded: boolean;
+  quantity: number;
+  thisCard: ICard;
+}
+
 function Card(props: Props) {
+  const dispatch = useDispatch<AppDispatch>();
   const { id, title, price, thumbnail } = props;
 
-  const thisCard = useSelector((state: RootState) => selectById(state, id));
+  const thisCard = useSelector((state: RootState) =>
+    selectById(state, id)
+  ) as CartItem;
 
-  const [isAdded, setIsAdded] = useState(false);
-  const [amount, setAmount] = useState(1);
-  const dispatch = useDispatch<AppDispatch>();
+  const ISADDED = useSelector((state: RootState) =>
+    selectIsAddedById(state, id)
+  );
+  const QTY = useSelector((state: RootState) => selectQtyById(state, id));
+
+  const [isAdded, setIsAdded] = useState(ISADDED);
 
   const onClick = () => {
-    // !
     setIsAdded(!isAdded);
-    setAmount(() => {
-      const newValue = 1;
-      dispatch(
-        addItem({
-          id: thisCard.id,
-          thisCard,
-          quantity: newValue,
-          isAdded: true,
-        })
-      );
-
-      return newValue;
-    });
+    dispatch(
+      addItem({
+        id: thisCard.id,
+        thisCard,
+        isAdded: true,
+        quantity: 1,
+      })
+    );
   };
 
   const decrement = () => {
-    if (amount <= 1) {
-      // !
+    if (QTY <= 1) {
       setIsAdded(!isAdded);
+      dispatch(removeItem(id));
+    } else {
+      dispatch(changeQty({ id: thisCard.id, thisCard, quantity: QTY - 1 }));
     }
-    setAmount((value) => {
-      const newValue = value - 1;
-      dispatch(changeQty({ id: thisCard.id, thisCard, quantity: newValue }));
-      if (newValue === 0) {
-        dispatch(removeItem(id));
-      }
-      return newValue;
-    });
   };
 
   const increment = () => {
-    setAmount((value) => {
-      const newValue = value + 1;
-      dispatch(changeQty({ id: thisCard.id, thisCard, quantity: newValue }));
-      return newValue;
-    });
+    dispatch(changeQty({ id: thisCard.id, thisCard, quantity: QTY + 1 }));
   };
 
   return (
@@ -84,7 +82,6 @@ function Card(props: Props) {
       </Link>
       <div className="card__add-container">
         <button
-          // !
           className={`card__add ${isAdded ? '' : 'active'}`}
           type="button"
           onClick={onClick}
@@ -93,7 +90,6 @@ function Card(props: Props) {
         </button>
 
         <div
-          // !
           className={`card__change-qnt-container ${isAdded ? 'active' : ''}`}
         >
           <button
@@ -105,8 +101,9 @@ function Card(props: Props) {
           </button>
           <input
             type="text"
-            value={amount}
-            onChange={(e) => setAmount(Number(e.target.value))}
+            value={QTY}
+            readOnly
+            // onChange={(e) => setAmount(Number(e.target.value))}
             className="card__quantity-input"
           />
           <button

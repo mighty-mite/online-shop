@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCards, selectAll } from './cardsSlice';
+import { fetchCards, selectAll, setFilteredCards } from './cardsSlice';
+import {
+  selectAll as selectAllCartItems,
+  selectById,
+} from '../../pages/cartPage/cartSlice';
 import { AppDispatch, RootState } from '../../store';
 import { ICard } from '../../service/types';
 import Card from '../card/Card';
@@ -22,7 +26,6 @@ function CardField() {
   const filteredCards = filterCards(goods as ICard[], filterSettings);
 
   // dispatch(setFilteredCards(filteredCards));
-
   const offset = useSelector((state: RootState) => state.cards.offset);
 
   // Первая загрузка
