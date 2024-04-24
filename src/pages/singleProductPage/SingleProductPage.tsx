@@ -30,7 +30,9 @@ function SingleProductPage() {
     if (id === undefined) return;
     getSingleProduct(id).then(onCardLoaded);
   }, [card, getSingleProduct, id]);
+
   if (card === undefined) return '';
+
   return (
     <section className="product">
       <div className="container product__container">

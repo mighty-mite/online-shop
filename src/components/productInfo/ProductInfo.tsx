@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import './SingleProductPage.scss';
+import './ProductInfo.scss';
 
 interface Props {
   title: string;

@@ -1,12 +1,10 @@
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable react/jsx-key */
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useHttp from '../../hooks/useHttp';
 import { ICard } from '../../service/types';
 
-import './SingleProductPage.scss';
+import './ProductImg.scss';
 
 interface Props {
   images: string[];
