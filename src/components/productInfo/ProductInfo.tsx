@@ -1,31 +1,35 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 import './ProductInfo.scss';
+import { useSelector } from 'react-redux';
+import { selectById } from '../cardField/cardsSlice';
+import { CartItem } from '../card/Card';
+import { RootState } from '../../store';
 
 interface Props {
+  id: number;
   title: string;
   price: number;
   description: string;
   increment: () => void;
   decrement: () => void;
   amount: number;
-  setAmount: Dispatch<SetStateAction<number>>;
+  isAdded: boolean;
+  onAdd: (id: number) => void;
 }
 
 function ProductInfo(props: Props) {
-  // const [isAdded, setIsAdded] = useState(false);
-
-  // const onAdd = () => {
-  //   setIsAdded(!isAdded);
-  // };
-
-  // const [mainImage, setMainImage] = useState('');
-  // const onImage = (src: string) => {
-  //   setMainImage(src);
-  // };
-
-  const { title, price, description, setAmount, decrement, increment, amount } =
-    props;
+  const {
+    id,
+    isAdded,
+    title,
+    price,
+    description,
+    decrement,
+    increment,
+    amount,
+    onAdd,
+  } = props;
 
   return (
     <div className="product__info">
@@ -34,15 +38,18 @@ function ProductInfo(props: Props) {
       <h3 className="product__description">{description}</h3>
       <div className="product__btns">
         <button
-          className="product__add"
-          // disabled={isAdded}
+          className={`product__add ${isAdded ? '' : 'active'}`}
           type="button"
-          // onClick={onAdd}
+          onClick={() => {
+            onAdd(id);
+          }}
         >
           Buy
         </button>
 
-        <div className="product__change-qnt-container">
+        <div
+          className={`product__change-qnt-container ${isAdded ? 'active' : ''}`}
+        >
           <button
             className="product__change-qnt"
             type="button"
@@ -53,7 +60,8 @@ function ProductInfo(props: Props) {
           <input
             type="text"
             value={amount}
-            onChange={(e) => setAmount(Number(e.target.value))}
+            readOnly
+            // onChange={(e) => setAmount(Number(e.target.value))}
             className="product__quantity-input"
           />
           <button

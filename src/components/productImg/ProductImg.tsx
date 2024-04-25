@@ -1,9 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import useHttp from '../../hooks/useHttp';
-import { ICard } from '../../service/types';
-
+import { useState } from 'react';
 import './ProductImg.scss';
 
 interface Props {
@@ -12,29 +8,8 @@ interface Props {
 
 function ProductImg(props: Props) {
   const { images } = props;
-  // const [isAdded, setIsAdded] = useState(false);
-  // const [amount, setAmount] = useState(0);
   const [current, setCurrent] = useState(images[0]);
 
-  // const onAdd = () => {
-  //   setIsAdded(!isAdded);
-  // };
-
-  // const decrement = () => {
-  //   if (amount <= 1) {
-  //     setIsAdded(!isAdded);
-  //     return;
-  //   }
-  //   setAmount((value) => value - 1);
-  // };
-
-  // const increment = () => {
-  //   setAmount((value) => value + 1);
-  // };
-  // const [mainImage, setMainImage] = useState('');
-  // const onImage = (src: string) => {
-  //   setMainImage(src);
-  // };
   const onImage = (it: string) => {
     setCurrent(it);
   };
@@ -47,7 +22,11 @@ function ProductImg(props: Props) {
         {images.map((item: string, i) => {
           return (
             <li key={i} className="product__img-item">
-              <button onClick={() => onImage(item)} type="button">
+              <button
+                onClick={() => onImage(item)}
+                type="button"
+                className="product__img-pic-btn"
+              >
                 <img src={item} alt="" className="product__img-pic" />
               </button>
             </li>

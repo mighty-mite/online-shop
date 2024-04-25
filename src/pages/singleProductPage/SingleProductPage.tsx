@@ -1,33 +1,81 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import useHttp from '../../hooks/useHttp';
 import { ICard } from '../../service/types';
+import ProductImg from '../../components/productImg/ProductImg';
+
+import ProductInfo from '../../components/productInfo/ProductInfo';
+import {
+  addItem,
+  changeQty,
+  removeItem,
+  selectIsAddedById,
+  selectQtyById,
+} from '../cartPage/cartSlice';
+import { AppDispatch, RootState } from '../../store';
 
 import './SingleProductPage.scss';
-import ProductImg from '../../components/productImg/ProductImg';
-import ProductInfo from '../../components/productInfo/ProductInfo';
+import { fetchCards, selectById } from '../../components/cardField/cardsSlice';
 
 function SingleProductPage() {
-  const [card, setCard] = useState<ICard>();
-  const [amount, setAmount] = useState(0);
-
-  const { getSingleProduct } = useHttp();
+  const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams();
 
+  useEffect(() => {
+    dispatch(fetchCards());
+  }, [dispatch]);
+
+  const cardId = Number(id);
+
+  const thisCard = useSelector((state: RootState) =>
+    selectById(state, cardId)
+  ) as ICard;
+
+  const ISADDED = useSelector((state: RootState) =>
+    selectIsAddedById(state, cardId)
+  );
+
+  const [card, setCard] = useState<ICard>();
+  const [isAdded, setIsAdded] = useState(ISADDED);
+
+  const QTY = useSelector((state: RootState) =>
+    selectQtyById(state, Number(id))
+  );
+
+  const { getSingleProduct } = useHttp();
+
   const decrement = () => {
-    setAmount((value) => value - 1);
+    if (QTY <= 1) {
+      setIsAdded(!isAdded);
+      dispatch(removeItem(id));
+    } else {
+      dispatch(changeQty({ id: cardId, thisCard, quantity: QTY - 1 }));
+    }
   };
 
   const increment = () => {
-    setAmount((value) => value + 1);
+    dispatch(changeQty({ id: cardId, thisCard, quantity: QTY + 1 }));
   };
 
   const onCardLoaded = (item: ICard) => {
     setCard(item);
   };
 
+  const onAdd = () => {
+    setIsAdded(!isAdded);
+    dispatch(
+      addItem({
+        id: cardId,
+        thisCard,
+        isAdded: true,
+        quantity: 1,
+      })
+    );
+  };
+
   useEffect(() => {
-    if (id === undefined) return;
+    if (!id) return;
     getSingleProduct(id).then(onCardLoaded);
   }, [card, getSingleProduct, id]);
 
@@ -38,13 +86,15 @@ function SingleProductPage() {
       <div className="container product__container">
         <ProductImg images={card.images} />
         <ProductInfo
+          id={card.id}
           title={card.title}
           price={card.price}
           description={card.description}
           decrement={decrement}
           increment={increment}
-          amount={amount}
-          setAmount={setAmount}
+          amount={QTY}
+          isAdded={isAdded}
+          onAdd={onAdd}
         />
       </div>
     </section>

@@ -31,6 +31,11 @@ export const selectQtyById = (state: RootState, itemId: number) => {
   return item ? item.quantity : 1;
 };
 
+export const selectItemInCartById = (state: RootState, itemId: number) => {
+  const item = state.cart.entities[itemId];
+  return item;
+};
+
 export const selectIsAddedById = (state: RootState, itemId: number) => {
   const item = state.cart.entities[itemId];
   return item ? item.isAdded : false;

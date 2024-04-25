@@ -10,6 +10,7 @@
   width: 100%;
   border: 1px solid grey;
   border-radius: 5px;
+  display: none;
 }
 
 .product__change-qnt {
@@ -36,6 +37,7 @@
 .product__btns {
   display: flex;
   gap: 20px;
+  max-width: 60%;
 }
 
 .product__add {
@@ -55,10 +57,14 @@
   background-color: #2091f9;
   color: #ffffff;
   width: 100%;
-  // display: none;
-  display: flex;
+  display: none;
+  // display: flex;
 
   &:disabled {
     background-color: grey;
   }
+}
+
+.product__add.active {
+  display: flex;
 }
