@@ -2,7 +2,10 @@ import './OrderSummary.scss';
 
 function OrderSummary() {
   return (
-    <form className="summary cartpage__summary">
+    <form
+      onSubmit={(e) => e.preventDefault()}
+      className="summary cartpage__summary"
+    >
       <h2 className="summary__heading">Order Summary</h2>
       <div className="summary__subtotal">
         <div className="summary__subtotal-text">Subtotal</div>
@@ -24,10 +27,15 @@ function OrderSummary() {
       </div>
       <div className="summary__total">
         <div className="summary__total-text">Total</div>
-        <input readOnly type="text" className="summary__total-data" />
+        <input
+          readOnly
+          value="$46"
+          type="text"
+          className="summary__total-data"
+        />
       </div>
       <button className="summary__submit" type="submit">
-        Buy
+        Make Order
       </button>
     </form>
   );

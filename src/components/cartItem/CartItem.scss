@@ -1,0 +1,97 @@
+.cartitem {
+  list-style: none;
+  display: flex;
+}
+
+.cartitem:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.cartitem__link {
+  margin-right: 16px;
+  width: 124px;
+  height: 124px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.cartitem__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+}
+
+.cartitem__info {
+  margin-right: auto;
+}
+
+.cartitem__heading {
+  margin-top: 0;
+}
+
+.cartitem__delete {
+  background: none;
+  border: none;
+  width: 24px;
+  height: 24px;
+  background-image: url('./../../assets/delete.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.cartitem__change-qnt-container {
+  width: 100%;
+  border: 1px solid grey;
+  border-radius: 5px;
+  display: flex;
+  height: 40px;
+}
+
+.cartitem__btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cartitem__delete {
+  align-self: end;
+}
+
+.cartitem__change-qnt {
+  background: none;
+  height: 40px;
+  border: none;
+  width: 60px;
+  font-size: 32px;
+}
+
+.cartitem__quantity-input {
+  width: 40px;
+  text-align: center;
+  border: none;
+  font-size: 24px;
+  &:focus {
+    outline: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .cartitem__change-qnt {
+    width: 40px;
+  }
+
+  .cartitem__quantity-input {
+    width: 40px;
+  }
+
+  .cartitem__link {
+    margin-right: 14px;
+    width: 99px;
+    height: 99px;
+  }
+}

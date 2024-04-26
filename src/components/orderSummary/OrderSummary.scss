@@ -1,6 +1,12 @@
 .summary {
   border: 1px solid #9a9a9a;
   border-radius: 20px;
+  padding: 20px 24px;
+  height: fit-content;
+}
+
+.summary__heading {
+  margin-top: 0;
 }
 
 .summary__subtotal,
@@ -8,4 +14,38 @@
 .summary__total {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.summary__subtotal-data,
+.summary__delivery-data,
+.summary__total-data {
+  width: 50%;
+}
+
+.summary__subtotal-data,
+.summary__delivery-data,
+.summary__total-data {
+  border: none;
+  text-align: end;
+  &:focus {
+    outline: none;
+  }
+}
+
+.summary__submit {
+  height: 40px;
+  background-color: black;
+  color: white;
+  border-radius: 62px;
+  border: none;
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .summary__submit {
+    width: 200px;
+    margin: 0 auto;
+    display: block;
+  }
 }

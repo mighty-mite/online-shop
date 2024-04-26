@@ -40,14 +40,14 @@ function ShopPage() {
         </button>
         <div className="shop__cardfield-wrapper">
           <CardField />
-          <button
+          {/* <button
             disabled={loadingStatus === 'loading'}
             onClick={onSetOffset}
             type="button"
             className="shop__cardfield-load-btn"
           >
             Load more
-          </button>
+          </button> */}
         </div>
       </div>
       <div className={`shop__overlay ${isModalOpen ? 'active' : ''}`} />
