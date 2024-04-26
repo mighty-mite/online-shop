@@ -10,8 +10,8 @@ function ProductImg(props: Props) {
   const { images } = props;
   const [current, setCurrent] = useState(images[0]);
 
-  const onImage = (it: string) => {
-    setCurrent(it);
+  const onImage = (img: string) => {
+    setCurrent(img);
   };
   return (
     <div className="product__img-container">
