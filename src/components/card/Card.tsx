@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectById } from '../cardField/cardsSlice';
 import {
   addItem,
-  changeQty,
   removeItem,
   selectIsAddedById,
   selectQtyById,
+  incrementValue,
+  decrementValue,
 } from '../../pages/cartPage/cartSlice';
 import { AppDispatch, RootState } from '../../store';
 
@@ -58,14 +59,15 @@ function Card(props: Props) {
   const decrement = () => {
     if (QTY <= 1) {
       setIsAdded(!isAdded);
+      dispatch(decrementValue({ id: thisCard.id, thisCard, quantity: QTY }));
       dispatch(removeItem(id));
     } else {
-      dispatch(changeQty({ id: thisCard.id, thisCard, quantity: QTY - 1 }));
+      dispatch(decrementValue({ id: thisCard.id, thisCard, quantity: QTY }));
     }
   };
 
   const increment = () => {
-    dispatch(changeQty({ id: thisCard.id, thisCard, quantity: QTY + 1 }));
+    dispatch(incrementValue({ id: thisCard.id, thisCard, quantity: QTY }));
   };
 
   return (
@@ -103,7 +105,6 @@ function Card(props: Props) {
             type="text"
             value={QTY}
             readOnly
-            // onChange={(e) => setAmount(Number(e.target.value))}
             className="card__quantity-input"
           />
           <button

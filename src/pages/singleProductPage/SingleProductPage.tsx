@@ -8,7 +8,8 @@ import ProductImg from '../../components/productImg/ProductImg';
 import ProductInfo from '../../components/productInfo/ProductInfo';
 import {
   addItem,
-  changeQty,
+  decrementValue,
+  incrementValue,
   removeItem,
   selectIsAddedById,
   selectQtyById,
@@ -48,14 +49,15 @@ function SingleProductPage() {
   const decrement = () => {
     if (QTY <= 1) {
       setIsAdded(!isAdded);
+      dispatch(decrementValue({ id: thisCard.id, thisCard, quantity: QTY }));
       dispatch(removeItem(id));
     } else {
-      dispatch(changeQty({ id: cardId, thisCard, quantity: QTY - 1 }));
+      dispatch(decrementValue({ id: thisCard.id, thisCard, quantity: QTY }));
     }
   };
 
   const increment = () => {
-    dispatch(changeQty({ id: cardId, thisCard, quantity: QTY + 1 }));
+    dispatch(incrementValue({ id: thisCard.id, thisCard, quantity: QTY }));
   };
 
   const onCardLoaded = (item: ICard) => {

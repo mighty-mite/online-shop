@@ -1,6 +1,11 @@
+import { useSelector } from 'react-redux';
 import './OrderSummary.scss';
+import { RootState } from '../../store';
 
 function OrderSummary() {
+  const subtotal = useSelector((state: RootState) => state.cart.subtotal);
+  const delivery = useSelector((state: RootState) => state.cart.delivery);
+  const total = useSelector((state: RootState) => state.cart.total);
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
@@ -12,7 +17,7 @@ function OrderSummary() {
         <input
           readOnly
           type="text"
-          value="$45"
+          value={subtotal}
           className="summary__subtotal-data"
         />
       </div>
@@ -21,7 +26,7 @@ function OrderSummary() {
         <input
           readOnly
           type="text"
-          value="$1"
+          value={delivery}
           className="summary__delivery-data"
         />
       </div>
@@ -29,7 +34,7 @@ function OrderSummary() {
         <div className="summary__total-text">Total</div>
         <input
           readOnly
-          value="$46"
+          value={total}
           type="text"
           className="summary__total-data"
         />

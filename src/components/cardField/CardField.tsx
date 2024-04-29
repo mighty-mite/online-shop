@@ -25,9 +25,6 @@ function CardField() {
 
   const filteredCards = filterCards(goods as ICard[], filterSettings);
 
-  // dispatch(setFilteredCards(filteredCards));
-  // const offset = useSelector((state: RootState) => state.cards.offset);
-
   // Первая загрузка
 
   useEffect(() => {
