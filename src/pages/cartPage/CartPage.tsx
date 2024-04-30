@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
 import OrderSummary from '../../components/orderSummary/OrderSummary';
 import { selectAll } from './cartSlice';
 import { CartItem as ICartItem } from '../../components/card/Card';
@@ -8,11 +9,10 @@ import CartItem from '../../components/cartItem/CartItem';
 import './CartPage.scss';
 
 const render = (arr: ICartItem[]) => {
-  return arr.map((item, key) => {
+  return arr.map((item) => {
     return (
       <CartItem
-        // eslint-disable-next-line react/no-array-index-key
-        key={key}
+        key={nanoid()}
         id={item.id}
         title={item.thisCard.title}
         price={item.thisCard.price}

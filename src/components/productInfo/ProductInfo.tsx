@@ -1,10 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-
 import './ProductInfo.scss';
-import { useSelector } from 'react-redux';
-import { selectById } from '../cardField/cardsSlice';
-import { CartItem } from '../card/Card';
-import { RootState } from '../../store';
 
 interface Props {
   id: number;
@@ -61,7 +55,6 @@ function ProductInfo(props: Props) {
             type="text"
             value={amount}
             readOnly
-            // onChange={(e) => setAmount(Number(e.target.value))}
             className="product__quantity-input"
           />
           <button

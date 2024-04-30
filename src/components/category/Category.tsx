@@ -1,6 +1,6 @@
-/* eslint-disable react/no-array-index-key */
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
 import { AppDispatch, RootState } from '../../store';
 import { fetchCategories } from './categorySlice';
 import { categoryAdded, categoryRemoved } from '../filters/filterSettingsSlice';
@@ -29,8 +29,8 @@ function Category() {
   };
 
   const renderCategories = (arr: string[]) => {
-    return arr.map((item, i: number) => (
-      <li key={i} className="category__wrapper">
+    return arr.map((item) => (
+      <li key={nanoid()} className="category__wrapper">
         <label htmlFor={item} className="category__label">
           <input
             checked={filterSettings.includes(item)}

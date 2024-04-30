@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import './OrderSummary.scss';
 import { RootState } from '../../store';
+import './OrderSummary.scss';
 
 function OrderSummary() {
   const subtotal = useSelector((state: RootState) => state.cart.subtotal);

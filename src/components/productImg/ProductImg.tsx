@@ -1,5 +1,5 @@
-/* eslint-disable react/no-array-index-key */
 import { useState } from 'react';
+import { nanoid } from '@reduxjs/toolkit';
 import './ProductImg.scss';
 
 interface Props {
@@ -19,9 +19,9 @@ function ProductImg(props: Props) {
         <img className="product__img-main" src={current} alt="" />
       </div>
       <ul className="product__img-list">
-        {images.map((item: string, i) => {
+        {images.map((item: string) => {
           return (
-            <li key={i} className="product__img-item">
+            <li key={nanoid()} className="product__img-item">
               <button
                 onClick={() => onImage(item)}
                 type="button"

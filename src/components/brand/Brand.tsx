@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
@@ -26,8 +25,8 @@ function Brand() {
   };
 
   const renderBrands = (arr: string[]) => {
-    return arr.map((item, i: number) => (
-      <li key={i} className="brand__wrapper">
+    return arr.map((item) => (
+      <li key={nanoid()} className="brand__wrapper">
         <label htmlFor={item} className="brand__label">
           <input
             checked={filterSettings.includes(item)}
