@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import useHttp from '../../hooks/useHttp';
 import { ICard } from '../../service/types';
 import ProductImg from '../../components/productImg/ProductImg';
-
 import ProductInfo from '../../components/productInfo/ProductInfo';
 import {
   addItem,
@@ -15,9 +14,10 @@ import {
   selectQtyById,
 } from '../cartPage/cartSlice';
 import { AppDispatch, RootState } from '../../store';
+import { fetchCards, selectById } from '../../components/cardField/cardsSlice';
+import loader from '../../assets/loader.gif';
 
 import './SingleProductPage.scss';
-import { fetchCards, selectById } from '../../components/cardField/cardsSlice';
 
 function SingleProductPage() {
   const dispatch = useDispatch<AppDispatch>();
@@ -78,10 +78,12 @@ function SingleProductPage() {
 
   useEffect(() => {
     if (!id) return;
-    getSingleProduct(id).then(onCardLoaded);
+    const idWithOnlyDigits = id.replace(/\D/g, '');
+    getSingleProduct(idWithOnlyDigits).then(onCardLoaded);
   }, [card, getSingleProduct, id]);
 
-  if (card === undefined) return '';
+  if (card === undefined)
+    return <img className="product__loader-img" src={loader} alt="loader" />;
 
   return (
     <section className="product">

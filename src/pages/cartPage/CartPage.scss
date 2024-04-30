@@ -42,6 +42,10 @@
   justify-content: center;
 }
 
+.cartpage__empty {
+  text-align: center;
+}
+
 @media (max-width: 800px) {
   .cartpage__components {
     display: block;

@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import './CartItem.scss';
 import { Link } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../store';
 import {
-  changeQty,
   decrementValue,
   incrementValue,
   removeItem,
@@ -11,6 +9,7 @@ import {
 } from '../../pages/cartPage/cartSlice';
 import { ICard } from '../../service/types';
 import { selectById } from '../cardField/cardsSlice';
+import './CartItem.scss';
 
 interface Props {
   id: number;
@@ -50,7 +49,7 @@ function CartItem(props: Props) {
 
   return (
     <li className="cartitem">
-      <Link to={`/shop/${id}`} className="cartitem__link">
+      <Link to={`/${id}`} className="cartitem__link">
         <img src={thumbnail} alt="product" className="cartitem__img" />
       </Link>
       <div className="cartitem__info">

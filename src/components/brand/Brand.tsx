@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
 import { AppDispatch, RootState } from '../../store';
 import { fetchBrands } from './brandSlice';
 import { brandAdded, brandRemoved } from '../filters/filterSettingsSlice';

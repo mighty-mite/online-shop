@@ -11,14 +11,21 @@ export default function PriceRangeSlider() {
   const dispatch = useDispatch<AppDispatch>();
 
   const onMinPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (Number(e.target.value) < 0) return;
-    if (Number(e.target.value) >= maxPrice) return;
-    dispatch(minPriceChange(Number(e.target.value)));
+    let price = e.target.value.trim();
+
+    price = price.replace(/\D/g, '');
+
+    if (Number(price) < 0) return;
+    if (Number(price) >= maxPrice) return;
+    dispatch(minPriceChange(Number(price)));
   };
 
   const onMaxPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (Number(e.target.value) < 0) return;
-    dispatch(maxPriceChange(Number(e.target.value)));
+    let price = e.target.value.trim();
+
+    price = price.replace(/\D/g, '');
+    if (Number(price) < 0) return;
+    dispatch(maxPriceChange(Number(price)));
   };
   return (
     <div className="filters__item price">
@@ -26,12 +33,14 @@ export default function PriceRangeSlider() {
       <div className="price__container">
         <input
           type="text"
+          min="5"
           value={minPrice}
           onChange={onMinPriceChange}
           className="price__input price__from"
         />
         <input
           type="text"
+          min="5"
           value={maxPrice}
           onChange={onMaxPriceChange}
           className="price__input price__to"

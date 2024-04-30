@@ -72,8 +72,10 @@ function Card(props: Props) {
 
   return (
     <div className="card">
-      <Link className="card__link" to={`/shop/${id}`}>
-        <img src={thumbnail} alt="title" className="card__img" />
+      <Link className="card__link" to={`/${id}`}>
+        <div className="card__img-wrapper">
+          <img src={thumbnail} alt="title" className="card__img" />
+        </div>
         <div className="card__text">
           <h2 className="card__heading">{title}</h2>
           <p className="card__price">

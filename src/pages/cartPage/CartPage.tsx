@@ -36,8 +36,8 @@ function CartPage() {
             <h2 className="cartpage__empty">
               Your cart is empty, lets go shopping!
             </h2>
-            <Link className="cartpage__go-back-link" to="/shop">
-              Go back to shopping!
+            <Link className="cartpage__go-back-link" to="/">
+              Go back
             </Link>
           </div>
         ) : (
