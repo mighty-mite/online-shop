@@ -16,9 +16,13 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action) => {
-      const { quantity, thisCard } = action.payload;
+      const { quantity, thisCard, id } = action.payload;
       const { price } = thisCard;
       cartAdapter.addOne(state, action.payload);
+
+      const stringified = JSON.stringify(action.payload);
+      localStorage.setItem(id, stringified);
+
       state.subtotal += quantity * price;
       state.delivery = Math.ceil(state.subtotal * 0.05);
       state.total = state.subtotal + state.delivery;
@@ -26,12 +30,14 @@ const cartSlice = createSlice({
     incrementValue: (state, action) => {
       const { id, thisCard, quantity } = action.payload;
       const { price } = thisCard;
-      cartAdapter.upsertOne(state, {
+      const newObj = {
         id,
         thisCard,
         quantity: quantity + 1,
         isAdded: true,
-      });
+      };
+      cartAdapter.upsertOne(state, newObj);
+      localStorage.setItem(id, JSON.stringify(newObj));
       state.subtotal += price;
       state.delivery = Math.ceil(state.subtotal * 0.05);
       state.total = state.subtotal + state.delivery;
@@ -39,28 +45,23 @@ const cartSlice = createSlice({
     decrementValue: (state, action) => {
       const { id, thisCard, quantity } = action.payload;
       const { price } = thisCard;
-      cartAdapter.upsertOne(state, {
+      const newObj = {
         id,
         thisCard,
         quantity: quantity - 1,
         isAdded: true,
-      });
+      };
+      cartAdapter.upsertOne(state, newObj);
+      localStorage.setItem(id, JSON.stringify(newObj));
       state.subtotal -= price;
       state.delivery = Math.ceil(state.subtotal * 0.05);
-      state.total = state.subtotal + state.delivery;
-    },
-    changeQty: (state, action) => {
-      const { id, thisCard, quantity } = action.payload;
-      const { price } = thisCard;
-      cartAdapter.upsertOne(state, action.payload);
-      state.subtotal += (quantity - state.entities[id].quantity) * price;
-      state.delivery = state.subtotal * 0.05;
       state.total = state.subtotal + state.delivery;
     },
     removeItem: (state, action) => {
       const { price } = state.entities[action.payload].thisCard;
       const { quantity } = state.entities[action.payload];
       cartAdapter.removeOne(state, action.payload);
+      localStorage.removeItem(action.payload);
       state.subtotal -= price * quantity;
       state.delivery = Math.ceil(state.subtotal * 0.05);
       state.total = state.subtotal + state.delivery;
@@ -89,12 +90,6 @@ export const selectIsAddedById = (state: RootState, itemId: number) => {
 
 const { actions, reducer } = cartSlice;
 
-export const {
-  addItem,
-  changeQty,
-  removeItem,
-  incrementValue,
-  decrementValue,
-} = actions;
+export const { addItem, removeItem, incrementValue, decrementValue } = actions;
 
 export default reducer;

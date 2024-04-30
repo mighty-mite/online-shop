@@ -24,6 +24,16 @@ function SingleProductPage() {
   const { id } = useParams();
 
   useEffect(() => {
+    Object.keys(localStorage).forEach((key) => {
+      const itemRetrieved = localStorage.getItem(key);
+      if (itemRetrieved) {
+        const item = JSON.parse(itemRetrieved);
+        dispatch(addItem(item));
+      }
+    });
+  }, [dispatch]);
+
+  useEffect(() => {
     dispatch(fetchCards());
   }, [dispatch]);
 

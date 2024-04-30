@@ -1,10 +1,12 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import OrderSummary from '../../components/orderSummary/OrderSummary';
-import { selectAll } from './cartSlice';
+import { addItem, selectAll } from './cartSlice';
 import { CartItem as ICartItem } from '../../components/card/Card';
 import CartItem from '../../components/cartItem/CartItem';
+import { AppDispatch } from '../../store';
 
 import './CartPage.scss';
 
@@ -23,6 +25,16 @@ const render = (arr: ICartItem[]) => {
 };
 
 function CartPage() {
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    Object.keys(localStorage).forEach((key) => {
+      const itemRetrieved = localStorage.getItem(key);
+      if (itemRetrieved) {
+        const item = JSON.parse(itemRetrieved);
+        dispatch(addItem(item));
+      }
+    });
+  }, [dispatch]);
   const cartItems = useSelector(selectAll);
   const isCartEmpty = cartItems.length === 0;
 
