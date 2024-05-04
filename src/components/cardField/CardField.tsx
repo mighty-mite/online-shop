@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCards, selectAll } from './cardsSlice';
+import { useSelector } from 'react-redux';
+import { selectAll } from './cardsSlice';
 
-import { AppDispatch, RootState } from '../../store';
+import { RootState } from '../../store';
 import { ICard } from '../../service/types';
 import Card from '../card/Card';
 import filterCards from '../../service/filter';
@@ -12,8 +11,6 @@ import error from '../../assets/error.gif';
 import './CardField.scss';
 
 function CardField() {
-  const dispatch = useDispatch<AppDispatch>();
-
   const loadingStatus = useSelector(
     (state: RootState) => state.cards.cardsLoadingStatus
   );
@@ -23,10 +20,6 @@ function CardField() {
   const goods = useSelector(selectAll);
 
   const filteredCards = filterCards(goods as ICard[], filterSettings);
-
-  useEffect(() => {
-    dispatch(fetchCards());
-  }, [dispatch]);
 
   if (loadingStatus === 'loading') {
     return (

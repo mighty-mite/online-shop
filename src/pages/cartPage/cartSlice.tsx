@@ -21,7 +21,7 @@ const cartSlice = createSlice({
       cartAdapter.addOne(state, action.payload);
 
       const stringified = JSON.stringify(action.payload);
-      localStorage.setItem(id, stringified);
+      if (!localStorage.getItem(id)) localStorage.setItem(id, stringified);
 
       state.subtotal += quantity * price;
       state.delivery = Math.ceil(state.subtotal * 0.05);

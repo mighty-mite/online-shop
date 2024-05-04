@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import useHttp from '../../hooks/useHttp';
 

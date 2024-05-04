@@ -14,7 +14,7 @@ import {
   selectQtyById,
 } from '../cartPage/cartSlice';
 import { AppDispatch, RootState } from '../../store';
-import { fetchCards, selectById } from '../../components/cardField/cardsSlice';
+import { selectById } from '../../components/cardField/cardsSlice';
 import loader from '../../assets/loader.gif';
 
 import './SingleProductPage.scss';
@@ -22,20 +22,6 @@ import './SingleProductPage.scss';
 function SingleProductPage() {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams();
-
-  useEffect(() => {
-    Object.keys(localStorage).forEach((key) => {
-      const itemRetrieved = localStorage.getItem(key);
-      if (itemRetrieved) {
-        const item = JSON.parse(itemRetrieved);
-        dispatch(addItem(item));
-      }
-    });
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchCards());
-  }, [dispatch]);
 
   const cardId = Number(id);
 
@@ -90,7 +76,8 @@ function SingleProductPage() {
     if (!id) return;
     const idWithOnlyDigits = id.replace(/\D/g, '');
     getSingleProduct(idWithOnlyDigits).then(onCardLoaded);
-  }, [card, getSingleProduct, id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   if (card === undefined)
     return <img className="product__loader-img" src={loader} alt="loader" />;
@@ -107,7 +94,6 @@ function SingleProductPage() {
           decrement={decrement}
           increment={increment}
           amount={QTY}
-          isAdded={isAdded}
           onAdd={onAdd}
         />
       </div>

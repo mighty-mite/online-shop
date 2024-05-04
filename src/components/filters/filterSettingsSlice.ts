@@ -53,14 +53,6 @@ const filterSlice = createSlice({
       state.search = action.payload;
     },
   },
-  // extraReducers: (builder) => {
-  //   builder.addCase(fetchFilterSettings.fulfilled, (state, action) => {
-  // state.category = action.payload.categories;
-  // state.brand = action.payload.brands;
-  // state.prices.from = action.payload.prices.from;
-  // state.prices.to = action.payload.prices.to;
-  //   });
-  // },
 });
 
 const { actions, reducer } = filterSlice;

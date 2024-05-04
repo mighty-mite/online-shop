@@ -1,25 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../store';
+import { useState } from 'react';
 import CardField from '../../components/cardField/CardField';
 import Filters from '../../components/filters/Filters';
-import { addItem } from '../cartPage/cartSlice';
 
 import './ShopPage.scss';
 
 function ShopPage() {
-  const dispatch = useDispatch<AppDispatch>();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    Object.keys(localStorage).forEach((key) => {
-      const itemRetrieved = localStorage.getItem(key);
-      if (itemRetrieved) {
-        const item = JSON.parse(itemRetrieved);
-        dispatch(addItem(item));
-      }
-    });
-  }, [dispatch]);
 
   const showModal = () => {
     setIsModalOpen(!isModalOpen);

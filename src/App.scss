@@ -1,7 +1,8 @@
 @import './commonStyles/normalize';
 @import './commonStyles/global';
 
-.app {
+.app,
+.app-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;

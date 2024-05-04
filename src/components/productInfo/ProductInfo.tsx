@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux';
+import { selectIsAddedById } from '../../pages/cartPage/cartSlice';
+import { RootState } from '../../store';
 import './ProductInfo.scss';
 
 interface Props {
@@ -8,22 +11,15 @@ interface Props {
   increment: () => void;
   decrement: () => void;
   amount: number;
-  isAdded: boolean;
   onAdd: (id: number) => void;
 }
 
 function ProductInfo(props: Props) {
-  const {
-    id,
-    isAdded,
-    title,
-    price,
-    description,
-    decrement,
-    increment,
-    amount,
-    onAdd,
-  } = props;
+  const { id, title, price, description, decrement, increment, amount, onAdd } =
+    props;
+  const isAdded = useSelector((state: RootState) =>
+    selectIsAddedById(state, id)
+  );
 
   return (
     <div className="product__info">
