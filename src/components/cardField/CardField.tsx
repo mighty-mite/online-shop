@@ -29,16 +29,16 @@ function CardField() {
     );
   }
 
-  if (filteredCards.length === 0) {
-    return <h5 className="cardfield__error">No such items =(</h5>;
-  }
-
   if (loadingStatus === 'error') {
     return (
       <h5 className="cardfield__error">
-        <img src={error} alt="error" />
+        <img src={error} width="500" alt="error" />
       </h5>
     );
+  }
+
+  if (filteredCards.length === 0) {
+    return <h5 className="cardfield__error">No such items =(</h5>;
   }
 
   const renderCards = (arr: ICard[]) => {
