@@ -7,7 +7,7 @@ export const cartAdapter = createEntityAdapter<CartItem>();
 
 const initialState = cartAdapter.getInitialState({
   subtotal: 0,
-  delivery: 0,
+  delivery: 10,
   total: 0,
 });
 
@@ -24,7 +24,6 @@ const cartSlice = createSlice({
       if (!localStorage.getItem(id)) localStorage.setItem(id, stringified);
 
       state.subtotal += quantity * price;
-      state.delivery = Math.ceil(state.subtotal * 0.05);
       state.total = state.subtotal + state.delivery;
     },
     incrementValue: (state, action) => {
@@ -39,7 +38,6 @@ const cartSlice = createSlice({
       cartAdapter.upsertOne(state, newObj);
       localStorage.setItem(id, JSON.stringify(newObj));
       state.subtotal += price;
-      state.delivery = Math.ceil(state.subtotal * 0.05);
       state.total = state.subtotal + state.delivery;
     },
     decrementValue: (state, action) => {
@@ -54,7 +52,6 @@ const cartSlice = createSlice({
       cartAdapter.upsertOne(state, newObj);
       localStorage.setItem(id, JSON.stringify(newObj));
       state.subtotal -= price;
-      state.delivery = Math.ceil(state.subtotal * 0.05);
       state.total = state.subtotal + state.delivery;
     },
     removeItem: (state, action) => {
@@ -63,7 +60,6 @@ const cartSlice = createSlice({
       cartAdapter.removeOne(state, action.payload);
       localStorage.removeItem(action.payload);
       state.subtotal -= price * quantity;
-      state.delivery = Math.ceil(state.subtotal * 0.05);
       state.total = state.subtotal + state.delivery;
     },
   },

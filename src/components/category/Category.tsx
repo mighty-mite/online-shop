@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { AppDispatch, RootState } from '../../store';
 import { fetchCategories } from './categorySlice';
+import { resetOffset } from '../cardField/cardsSlice';
 import { categoryAdded, categoryRemoved } from '../filters/filterSettingsSlice';
 import './Category.scss';
 
@@ -37,6 +38,7 @@ function Category() {
             onChange={(e) => {
               const target = e.target as HTMLInputElement;
               onCategoryHandler(item, target.checked);
+              dispatch(resetOffset());
             }}
             id={item}
             type="checkbox"

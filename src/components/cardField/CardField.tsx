@@ -1,7 +1,8 @@
-import { useSelector } from 'react-redux';
-import { selectAll } from './cardsSlice';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAll, setFilteredCards } from './cardsSlice';
 
-import { RootState } from '../../store';
+import { AppDispatch, RootState } from '../../store';
 import { ICard } from '../../service/types';
 import Card from '../card/Card';
 import filterCards from '../../service/filter';
@@ -10,7 +11,13 @@ import error from '../../assets/error.gif';
 
 import './CardField.scss';
 
-function CardField() {
+interface Props {
+  offset: number;
+}
+
+function CardField(props: Props) {
+  const dispatch = useDispatch<AppDispatch>();
+  const { offset } = props;
   const loadingStatus = useSelector(
     (state: RootState) => state.cards.cardsLoadingStatus
   );
@@ -19,7 +26,14 @@ function CardField() {
 
   const goods = useSelector(selectAll);
 
-  const filteredCards = filterCards(goods as ICard[], filterSettings);
+  useEffect(() => {
+    const filteredCards = filterCards(goods as ICard[], filterSettings);
+    dispatch(setFilteredCards(filteredCards));
+  }, [dispatch, filterSettings, goods]);
+
+  const { filteredCards } = useSelector((state: RootState) => state.cards);
+
+  const visibleCards = filteredCards.filter((_item, i) => i + 1 <= offset);
 
   if (loadingStatus === 'loading') {
     return (
@@ -52,7 +66,8 @@ function CardField() {
       />
     ));
   };
-  const content = renderCards(filteredCards);
+
+  const content = renderCards(visibleCards);
 
   return <div className="cardfield">{content}</div>;
 }

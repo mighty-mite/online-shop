@@ -46,9 +46,11 @@
 }
 
 .shop__cardfield-load-btn.inactive {
-  .inactive {
-    background-color: red;
-  }
+  display: none;
+}
+
+.shop__cardfield-load-btn.active {
+  display: block;
 }
 
 @media (max-width: 800px) {

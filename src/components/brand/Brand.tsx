@@ -4,6 +4,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import { AppDispatch, RootState } from '../../store';
 import { fetchBrands } from './brandSlice';
 import { brandAdded, brandRemoved } from '../filters/filterSettingsSlice';
+import { resetOffset } from '../cardField/cardsSlice';
 import './Brand.scss';
 
 function Brand() {
@@ -33,6 +34,7 @@ function Brand() {
             onChange={(e) => {
               const target = e.target as HTMLInputElement;
               onBrandHandler(item, target.checked);
+              dispatch(resetOffset());
             }}
             id={item}
             type="checkbox"

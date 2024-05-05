@@ -24,6 +24,9 @@ const cardsSlice = createSlice({
   name: 'cards',
   initialState,
   reducers: {
+    resetOffset: (state) => {
+      state.offset = 10;
+    },
     setOffset: (state) => {
       state.offset += 10;
     },
@@ -53,6 +56,6 @@ export const { selectAll, selectById } = cardsAdapter.getSelectors<RootState>(
 
 const { actions, reducer } = cardsSlice;
 
-export const { setOffset, setFilteredCards } = actions;
+export const { resetOffset, setOffset, setFilteredCards } = actions;
 
 export default reducer;

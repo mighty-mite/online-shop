@@ -3,6 +3,7 @@ import { maxPriceChange, minPriceChange } from '../filters/filterSettingsSlice';
 import { AppDispatch, RootState } from '../../store';
 
 import './Price.scss';
+import { resetOffset } from '../cardField/cardsSlice';
 
 export default function PriceRangeSlider() {
   const minPrice = useSelector((state: RootState) => state.filters.minPrice);
@@ -18,6 +19,7 @@ export default function PriceRangeSlider() {
     if (Number(price) < 0) return;
     if (Number(price) >= maxPrice) return;
     dispatch(minPriceChange(Number(price)));
+    dispatch(resetOffset());
   };
 
   const onMaxPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +28,7 @@ export default function PriceRangeSlider() {
     price = price.replace(/\D/g, '');
     if (Number(price) < 0) return;
     dispatch(maxPriceChange(Number(price)));
+    dispatch(resetOffset());
   };
   return (
     <div className="filters__item price">
