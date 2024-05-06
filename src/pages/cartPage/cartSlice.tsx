@@ -2,6 +2,7 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import type { RootState } from '../../store';
 import type { CartItem } from '../../components/card/Card';
+import { cardsAdapter } from '../../components/cardField/cardsSlice';
 
 export const cartAdapter = createEntityAdapter<CartItem>();
 
@@ -62,6 +63,9 @@ const cartSlice = createSlice({
       state.subtotal -= price * quantity;
       state.total = state.subtotal + state.delivery;
     },
+    emptyCart: (state) => {
+      cardsAdapter.removeAll(state);
+    },
   },
 });
 
@@ -86,6 +90,12 @@ export const selectIsAddedById = (state: RootState, itemId: number) => {
 
 const { actions, reducer } = cartSlice;
 
-export const { addItem, removeItem, incrementValue, decrementValue } = actions;
+export const {
+  addItem,
+  removeItem,
+  incrementValue,
+  decrementValue,
+  emptyCart,
+} = actions;
 
 export default reducer;

@@ -57,6 +57,81 @@
   margin-bottom: 20px;
 }
 
+.summary__input-name-wrapper {
+  width: 100%;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.summary__input-name {
+  display: block;
+  width: 100%;
+  height: 40px;
+  border: 1px solid grey;
+  border-radius: 62px;
+  padding-left: 14px;
+}
+
+.summary__input-phone-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.summary__input-email {
+  display: block;
+  width: 100%;
+  height: 40px;
+  border: 1px solid grey;
+  border-radius: 62px;
+  padding-left: 14px;
+  margin-bottom: 30px;
+}
+
+.summary__input-email-wrapper {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.summary__name-msg {
+  display: none;
+  position: absolute;
+  top: 45px;
+  left: 0;
+}
+
+.summary__name-msg.active {
+  display: none;
+  color: red;
+  display: inline;
+  padding-left: 15px;
+}
+
+.summary__email-msg {
+  display: none;
+  position: absolute;
+  top: 45px;
+  left: 0;
+}
+
+.summary__email-msg.active {
+  color: red;
+  display: inline;
+  padding-left: 15px;
+}
+
+.summary__phone-msg {
+  display: none;
+  position: absolute;
+  top: 45px;
+  left: 0;
+}
+
+.summary__phone-msg.active {
+  color: red;
+  display: inline;
+  padding-left: 15px;
+}
+
 @media (max-width: 800px) {
   .summary {
     padding: 22px 14px;
