@@ -6,6 +6,18 @@ function OrderSummary() {
   const subtotal = useSelector((state: RootState) => state.cart.subtotal);
   const delivery = useSelector((state: RootState) => state.cart.delivery);
   const total = useSelector((state: RootState) => state.cart.total);
+
+  const onTouchPhone = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { target } = e;
+    if (target.value === '') target.value = '+7 ';
+  };
+
+  const onBlurPhone = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { target } = e;
+    if (target.value === '+7 ' || target.value === '+7' || target.value === '+')
+      target.value = '';
+  };
+
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
@@ -17,7 +29,7 @@ function OrderSummary() {
         <input
           readOnly
           type="text"
-          value={subtotal}
+          value={`$${subtotal}`}
           className="summary__subtotal-data"
         />
       </div>
@@ -26,7 +38,7 @@ function OrderSummary() {
         <input
           readOnly
           type="text"
-          value={delivery}
+          value={`$${delivery}`}
           className="summary__delivery-data"
         />
       </div>
@@ -34,11 +46,37 @@ function OrderSummary() {
         <div className="summary__total-text">Total</div>
         <input
           readOnly
-          value={total}
+          value={`$${total}`}
           type="text"
           className="summary__total-data"
         />
       </div>
+      <div className="summary__input-wrapper">
+        <input
+          className="summary__input"
+          type="text"
+          placeholder="Your name"
+          required
+          minLength={2}
+        />
+        <input
+          className="summary__input"
+          type="tel"
+          placeholder="+7 XXX XXX XX XX"
+          required
+          maxLength={13}
+          onFocus={onTouchPhone}
+          onBlur={onBlurPhone}
+        />
+      </div>
+
+      <input
+        className="summary__input"
+        type="email"
+        placeholder="E-mail"
+        required
+        pattern="/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/"
+      />
       <button className="summary__submit" type="submit">
         Make Order
       </button>
