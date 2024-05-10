@@ -45,9 +45,10 @@ function ShopPage() {
           <CardField offset={offset} />
           <button
             onClick={onSetOffset}
+            disabled={loadingStatus === 'loading'}
             type="button"
             className={`shop__cardfield-load-btn ${
-              loadingStatus === 'loading' ? 'inactive' : 'active'
+              filteredCards.length === 0 ? 'inactive' : 'active'
             }`}
           >
             Load more
