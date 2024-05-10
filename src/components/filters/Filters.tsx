@@ -1,6 +1,7 @@
 import Brand from '../brand/Brand';
 import Category from '../category/Category';
 import PriceRangeSlider from '../priceRangeSlider/PriceRangeSlider';
+import cross from '../../assets/cross.svg';
 import './Filters.scss';
 
 interface Props {
@@ -19,7 +20,7 @@ function Filters(props: Props) {
           type="button"
           className="filters__close-btn"
         >
-          <img src="./src/assets/cross.svg" alt="" className="filters__cross" />
+          <img src={cross} alt="" className="filters__cross" />
         </button>
       </div>
       <Category />

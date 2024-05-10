@@ -4,6 +4,7 @@ import CardField from '../../components/cardField/CardField';
 import Filters from '../../components/filters/Filters';
 import { AppDispatch, RootState } from '../../store';
 import { setOffset } from '../../components/cardField/cardsSlice';
+import filtersMobileButton from '../../assets/filters.svg';
 
 import './ShopPage.scss';
 
@@ -39,7 +40,7 @@ function ShopPage() {
           type="button"
           className="shop__filters-mobile-button"
         >
-          <img src="./src/assets/filters.svg" alt="" />
+          <img src={filtersMobileButton} alt="" />
         </button>
         <div className="shop__cardfield-wrapper">
           <CardField offset={offset} />
