@@ -50,9 +50,8 @@ const cardsSlice = createSlice({
   },
 });
 
-export const { selectAll, selectById } = cardsAdapter.getSelectors<RootState>(
-  (state) => state.cards
-);
+export const { selectAll, selectById, selectTotal } =
+  cardsAdapter.getSelectors<RootState>((state) => state.cards);
 
 const { actions, reducer } = cardsSlice;
 

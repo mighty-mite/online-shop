@@ -25,7 +25,7 @@ const cartSlice = createSlice({
       if (!localStorage.getItem(id)) localStorage.setItem(id, stringified);
 
       state.subtotal += quantity * price;
-      state.total = state.subtotal + state.delivery;
+      state.total = Number((state.subtotal + state.delivery).toFixed(2));
     },
     incrementValue: (state, action) => {
       const { id, thisCard, quantity } = action.payload;
@@ -38,8 +38,8 @@ const cartSlice = createSlice({
       };
       cartAdapter.upsertOne(state, newObj);
       localStorage.setItem(id, JSON.stringify(newObj));
-      state.subtotal += price;
-      state.total = state.subtotal + state.delivery;
+      state.subtotal = Number((state.subtotal + price).toFixed(2));
+      state.total = Number((state.subtotal + state.delivery).toFixed(2));
     },
     decrementValue: (state, action) => {
       const { id, thisCard, quantity } = action.payload;
@@ -52,19 +52,21 @@ const cartSlice = createSlice({
       };
       cartAdapter.upsertOne(state, newObj);
       localStorage.setItem(id, JSON.stringify(newObj));
-      state.subtotal -= price;
-      state.total = state.subtotal + state.delivery;
+      state.subtotal = Number((state.subtotal - price).toFixed(2));
+      state.total = Number((state.subtotal + state.delivery).toFixed(2));
     },
     removeItem: (state, action) => {
       const { price } = state.entities[action.payload].thisCard;
       const { quantity } = state.entities[action.payload];
       cartAdapter.removeOne(state, action.payload);
       localStorage.removeItem(action.payload);
-      state.subtotal -= price * quantity;
-      state.total = state.subtotal + state.delivery;
+      state.subtotal = Number((state.subtotal - price * quantity).toFixed(2));
+      state.total = Number((state.subtotal + state.delivery).toFixed(2));
     },
     emptyCart: (state) => {
       cardsAdapter.removeAll(state);
+      state.subtotal = 0;
+      state.total = 0;
     },
   },
 });

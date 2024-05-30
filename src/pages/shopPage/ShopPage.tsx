@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CardField from '../../components/cardField/CardField';
 import Filters from '../../components/filters/Filters';
+import { selectTotal, setOffset } from '../../components/cardField/cardsSlice';
 import { AppDispatch, RootState } from '../../store';
-import { setOffset } from '../../components/cardField/cardsSlice';
 import filtersMobileButton from '../../assets/filters.svg';
 
 import './ShopPage.scss';
@@ -13,6 +13,7 @@ function ShopPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const { filteredCards } = useSelector((state: RootState) => state.cards);
+  const offsetMax = useSelector(selectTotal);
 
   const showModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -21,7 +22,7 @@ function ShopPage() {
   const onSetOffset = () => {
     if (filteredCards.length <= 10) return;
     if (filteredCards.length <= offset) return;
-    if (offset === 100) return;
+    if (offset > offsetMax) return;
     dispatch(setOffset());
   };
 
@@ -49,7 +50,11 @@ function ShopPage() {
             disabled={loadingStatus === 'loading'}
             type="button"
             className={`shop__cardfield-load-btn ${
-              filteredCards.length === 0 ? 'inactive' : 'active'
+              filteredCards.length === 0 ||
+              offset > 194 ||
+              filteredCards.length <= 10
+                ? 'inactive'
+                : 'active'
             }`}
           >
             Load more

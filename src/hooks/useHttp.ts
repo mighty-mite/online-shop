@@ -2,7 +2,7 @@ import { ICard } from '../service/types';
 
 const useHttp = () => {
   const getAll = async (
-    query = 'https://dummyjson.com/products?limit=100&skip=0',
+    query = 'https://dummyjson.com/products?limit=0&skip=0',
     method = 'GET',
     body = null,
     headers = { 'Content-Type': 'application/json' }

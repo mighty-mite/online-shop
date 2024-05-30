@@ -13,8 +13,8 @@ interface InitialState {
 const initialState: InitialState = {
   category: [],
   brand: [],
-  minPrice: 10,
-  maxPrice: 2000,
+  minPrice: 0,
+  maxPrice: 35000,
   search: '',
 };
 

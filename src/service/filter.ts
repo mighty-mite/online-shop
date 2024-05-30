@@ -20,8 +20,10 @@ const filterCards = (cards: ICard[], filters: FilterSettings): ICard[] => {
     // Check search filter
     if (
       filters.search &&
-      !card.title.toLowerCase().includes(filters.search.toLowerCase()) &&
-      !card.brand.toLowerCase().includes(filters.search.toLowerCase())
+      !String(card.title)
+        .toLowerCase()
+        .includes(filters.search.toLowerCase()) &&
+      !String(card.brand).toLowerCase().includes(filters.search.toLowerCase())
     ) {
       return false;
     }
