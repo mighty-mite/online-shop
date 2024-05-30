@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import useHttp from '../../hooks/useHttp';
+import getMinMaxPrice from '../../service/getMinMax';
 
 interface InitialState {
   category: string[];
@@ -10,11 +11,13 @@ interface InitialState {
   search: string;
 }
 
+const minMax = await getMinMaxPrice();
+
 const initialState: InitialState = {
   category: [],
   brand: [],
-  minPrice: 0,
-  maxPrice: 35000,
+  minPrice: minMax.minPrice,
+  maxPrice: minMax.maxPrice,
   search: '',
 };
 

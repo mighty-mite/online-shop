@@ -1,8 +1,8 @@
+/* eslint-disable no-useless-catch */
 import { ICard } from './types';
 
-/* eslint-disable no-useless-catch */
 const getMinMaxPrice = async (
-  query = 'https://dummyjson.com/products?limit=100&skip=0',
+  query = 'https://dummyjson.com/products?limit=0&skip=0',
   method = 'GET',
   body = null,
   headers = { 'Content-Type': 'application/json' }
@@ -16,14 +16,18 @@ const getMinMaxPrice = async (
 
     const data = await response.json();
 
-    const minPrice = Math.min(
-      ...Array.from(
-        new Set(data.products.map((item: ICard) => item.price) as Set<number>)
+    const minPrice = Math.floor(
+      Math.min(
+        ...Array.from(
+          new Set(data.products.map((item: ICard) => item.price) as Set<number>)
+        )
       )
     );
-    const maxPrice = Math.min(
-      ...Array.from(
-        new Set(data.products.map((item: ICard) => item.price) as Set<number>)
+    const maxPrice = Math.round(
+      Math.max(
+        ...Array.from(
+          new Set(data.products.map((item: ICard) => item.price) as Set<number>)
+        )
       )
     );
     return {
