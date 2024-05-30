@@ -8,4 +8,4 @@
 
 ### Deploy Link:
 
-https://earnest-klepon-680289.netlify.app/
+https://lighthearted-frangipane-0f4ebb.netlify.app
