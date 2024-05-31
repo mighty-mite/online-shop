@@ -51,8 +51,9 @@ function ShopPage() {
             type="button"
             className={`shop__cardfield-load-btn ${
               filteredCards.length === 0 ||
-              offset > 194 ||
-              filteredCards.length <= 10
+              offset >= offsetMax ||
+              filteredCards.length <= 10 ||
+              offset >= filteredCards.length
                 ? 'inactive'
                 : 'active'
             }`}

@@ -1,5 +1,10 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { maxPriceChange, minPriceChange } from '../filters/filterSettingsSlice';
+import {
+  maxPriceChange,
+  minPriceChange,
+  fetchMinMax,
+} from '../filters/filterSettingsSlice';
 import { AppDispatch, RootState } from '../../store';
 
 import './Price.scss';
@@ -10,6 +15,10 @@ export default function PriceRangeSlider() {
   const maxPrice = useSelector((state: RootState) => state.filters.maxPrice);
 
   const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(fetchMinMax());
+  }, [dispatch]);
 
   const onMinPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let price = e.target.value.trim();

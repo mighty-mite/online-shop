@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import useHttp from '../../hooks/useHttp';
 import getMinMaxPrice from '../../service/getMinMax';
 
 interface InitialState {
@@ -11,23 +10,17 @@ interface InitialState {
   search: string;
 }
 
-const minMax = await getMinMaxPrice();
-
 const initialState: InitialState = {
   category: [],
   brand: [],
-  minPrice: minMax.minPrice,
-  maxPrice: minMax.maxPrice,
+  minPrice: 0,
+  maxPrice: 10,
   search: '',
 };
 
-export const fetchFilterSettings = createAsyncThunk(
-  'filters/fetchFilterSettings',
-  () => {
-    const { getAll } = useHttp();
-    return getAll();
-  }
-);
+export const fetchMinMax = createAsyncThunk('filters/fetchMinMax', () => {
+  return getMinMaxPrice();
+});
 
 const filterSlice = createSlice({
   name: 'filterSlice',
@@ -55,6 +48,12 @@ const filterSlice = createSlice({
     setSearch: (state, action) => {
       state.search = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchMinMax.fulfilled, (state, action) => {
+      state.minPrice = action.payload.minPrice;
+      state.maxPrice = action.payload.maxPrice;
+    });
   },
 });
 
