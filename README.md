@@ -8,4 +8,4 @@
 
 ### Deploy Link:
 
-https://lighthearted-frangipane-0f4ebb.netlify.app
+https://classy-malabi-793eeb.netlify.app/
